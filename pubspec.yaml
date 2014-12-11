@@ -1,0 +1,5 @@
+name: MuzQuizz
+author: Marie-Jo Bégin <petite.chikita@gmail.com>
+description: A sample web application
+dependencies:
+  browser: any

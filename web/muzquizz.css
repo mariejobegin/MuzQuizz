@@ -1,0 +1,88 @@
+
+body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+  background: url(packages/MuzQuizz/Images/Logo_MuzQuizz.jpg);
+  background-repeat: no-repeat;
+}
+
+h1, p {
+  color: #333;
+}
+
+#Category_id {
+  position: absolute;
+  top: 0px;
+  left: 300px;
+  font-size: 24px;
+}
+
+#Rock_id {
+  position: absolute;
+  top: 220px;
+  left: 220px;
+}
+
+#Classic_id {
+  position: absolute;
+  top: 475px;
+  left: 220px;
+}
+
+.ChoiceButton{
+  font-size: 72px;
+  cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
+  padding:5px 25px; /*add some padding to the inside of the button*/
+  background:#35b128; /*the colour of the button*/
+  border:1px solid #33842a; /*required or the default border for the browser will appear*/
+  /*give the button curved corners, alter the size as required*/
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  /*give the button a drop shadow*/
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
+  box-shadow: 0 0 4px rgba(0,0,0, .75);
+  /*style the text*/
+  color:#f3f3f3;
+  font-size:1.1em;
+}
+
+.ChoiceButton:hover,.ChoiceButton:focus{
+  background-color :#399630; /*make the background a little darker*/
+  /*reduce the drop shadow size to give a pushed button effect*/
+  -webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
+  -moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
+  box-shadow: 0 0 1px rgba(0,0,0, .75);
+}
+
+#ChoiceNo1_id {
+  position: absolute;
+  top: 100px;
+  left: 245px;
+}
+
+#ChoiceNo2_id {
+  position: absolute;
+  top: 250px;
+  left: 245px;
+
+}
+
+#ChoiceNo3_id {
+  position: absolute;
+  top: 400px;
+  left: 245px;
+
+}
+
+#ChoiceNo4_id {
+  position: absolute;
+  top: 550px;
+  left: 245px;
+
+}
