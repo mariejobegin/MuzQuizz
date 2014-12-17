@@ -3,6 +3,9 @@ library MuzQuizz;
 import 'dart:html';
 import 'dart:math' as math;
 import 'DataModel/songslist.dart';
+import 'dart:async';
+
+Future pause(Duration d) => new Future.delayed(d);
 
 class Quiz {
   
@@ -27,7 +30,7 @@ class Quiz {
     
   }
   
-  void PrepareCurrentGame(SongCategory quizCategory)
+  Future PrepareCurrentGame(SongCategory quizCategory)
   {
     
     ButtonElement choiceButton;
@@ -59,9 +62,12 @@ class Quiz {
     for (int i = 1; i <= 4; i++)
     {
       choiceButton = querySelector("#ChoiceNo" + i.toString() +"_id");
-      choiceButton.onClick.listen((Event e) {
+      choiceButton.onClick.listen((Event e) async {
         
-        ShowResult();
+        await ShowResult(currentGameSongs.list.first);
+        
+        // remove the current song from the list
+        currentGameSongs.list.removeAt(0);
         
         if (currentGameSongs.list.length == 0)
           EndGame();
@@ -72,17 +78,14 @@ class Quiz {
     
   }
   
-  void PlaySong(Song song)
+  Future PlaySong(Song song) async
   {
     
     List<int> songsPosition = new List<int>();
     int position, index;
     AudioElement gameAudio = querySelector("#Music_id");
     ButtonElement choiceButton;
-    
-    // remove the current song from the list
-    currentGameSongs.list.removeAt(0);
-    
+        
     while (songsPosition.length < 4)
     {
       position = new math.Random().nextInt(4) + 1;
@@ -91,7 +94,7 @@ class Quiz {
     }
     
     // Show timer before the songs start
-    ShowTimer();
+    await ShowTimer();
     
     // Set the good answer
     choiceButton = querySelector("#ChoiceNo" + songsPosition[0].toString() +"_id");
@@ -121,14 +124,54 @@ class Quiz {
     window.location.reload();
   }
   
-  void ShowResult()
+  Future ShowResult(Song song) async
   {
-    // TODO: Placeholder for now.
+    
+    ButtonElement choiceButton;
+    
+    for (int i = 1; i <= 4; i++)
+    {
+    
+      choiceButton = querySelector("#ChoiceNo" + i.toString() +"_id");
+      if (song.fullName == choiceButton.text)
+        choiceButton.style.backgroundColor = "green";
+      else
+        choiceButton.style.backgroundColor = "red";
+      
+    }
+    
+    await pause(const Duration(seconds: 2));
+    
+    // Restore background color
+    for (int i = 1; i <= 4; i++)
+    {
+      choiceButton = querySelector("#ChoiceNo" + i.toString() +"_id");
+      choiceButton.style.backgroundColor = "#35b128";
+    }
+    
   }
   
-  void ShowTimer()
+  
+  Future ShowTimer() async
   {
-// TODO: Placeholder for now.
+    
+    int countdown;
+    Element timerSection = querySelector("#Timer_id");
+    Element countdownText = querySelector("#Countdown_id");
+    Element gameSection = querySelector("#Game_id");
+    
+    gameSection.hidden = true;
+    timerSection.hidden = false;
+    
+    for (int countdown = 3; countdown > 0; countdown--)
+    {
+      countdownText.text = countdown.toString();
+      await pause(const Duration(seconds: 1));
+    }
+    
+    gameSection.hidden = false;
+    timerSection.hidden = true;
+
   }
   
 }

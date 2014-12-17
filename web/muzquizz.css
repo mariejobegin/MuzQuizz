@@ -33,6 +33,15 @@ h1, p {
   left: 220px;
 }
 
+#Countdown_id {
+  position: absolute;
+  font-size: 128px;
+  top: 275px;
+  left: 350px;
+  font-weight: 900;
+  color: white;
+}
+
 .ChoiceButton{
   font-size: 72px;
   cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
@@ -70,19 +79,16 @@ h1, p {
   position: absolute;
   top: 250px;
   left: 245px;
-
 }
 
 #ChoiceNo3_id {
   position: absolute;
   top: 400px;
   left: 245px;
-
 }
 
 #ChoiceNo4_id {
   position: absolute;
   top: 550px;
   left: 245px;
-
 }
