@@ -4,6 +4,7 @@ import 'dart:html';
 import 'dart:math' as math;
 import 'DataModel/songslist.dart';
 import 'dart:async';
+import 'dart:js' as js;
 
 Future pause(Duration d) => new Future.delayed(d);
 
@@ -11,10 +12,19 @@ class Quiz {
   
   DataModel gameData;
   Songs currentGameSongs;
+  int totalScore;
+  bool choiceMade;
+  
+  Element scoreTimer;
+  Element scoreSection;
   
   Quiz()
   {
     gameData = new DataModel();
+    
+    totalScore = 0;
+    scoreTimer = querySelector("#ScoreTimer_id");
+    scoreSection = querySelector("#Score_id");
   }
   
   void StartNewQuiz(SongCategory quizCategory, Element categorySection, Element gameSection)
@@ -24,7 +34,6 @@ class Quiz {
     
     // Section display
     categorySection.hidden = true;
-    gameSection.hidden = false;
     
     PlaySong(currentGameSongs.list.first);
     
@@ -53,7 +62,8 @@ class Quiz {
       while (currentSong.wrongAnswers.length < 3)
       {
         newSong = gameData.songs.randomSong();
-        if (currentSong.wrongAnswers.contains(newSong.fullName) == false && currentSong.fullName != newSong.fullName)
+        if (currentSong.wrongAnswers.contains(newSong.fullName) == false && 
+            currentSong.fullName != newSong.fullName)
           currentSong.wrongAnswers.add(newSong.fullName);
       }
     }
@@ -63,8 +73,8 @@ class Quiz {
     {
       choiceButton = querySelector("#ChoiceNo" + i.toString() +"_id");
       choiceButton.onClick.listen((Event e) async {
-        
-        await ShowResult(currentGameSongs.list.first);
+ 
+        await ShowResult(i, currentGameSongs.list.first);
         
         // remove the current song from the list
         currentGameSongs.list.removeAt(0);
@@ -113,34 +123,61 @@ class Quiz {
       
     }
     
+    choiceMade = false;
+    
     // Play the song
     gameAudio.src = song.songPath;
     gameAudio.play(); 
     
+    ShowScore();
+    
   }
   
-  void EndGame()
+  Future EndGame() async
   {
+    Element scoreBoardSection = querySelector("#ScoreBoard_id");
+    Element totalScoreElement = querySelector("#TotalScore_id");
+    Element gameSection = querySelector("#Game_id");
+    
+    scoreBoardSection.hidden = false;
+    gameSection.hidden = true;
+    
+    totalScoreElement.text = totalScore.toString();
+    
+    await pause(const Duration(seconds: 5));
+    
     window.location.reload();
   }
   
-  Future ShowResult(Song song) async
+  Future ShowResult(int choiceIndex, Song song) async
   {
     
     ButtonElement choiceButton;
+    int goodAnswerIndex;
+    
+    choiceMade = true;
     
     for (int i = 1; i <= 4; i++)
     {
     
       choiceButton = querySelector("#ChoiceNo" + i.toString() +"_id");
       if (song.fullName == choiceButton.text)
+      {
         choiceButton.style.backgroundColor = "green";
+        goodAnswerIndex = i;
+      }
       else
         choiceButton.style.backgroundColor = "red";
       
     }
     
-    await pause(const Duration(seconds: 2));
+    // Look if we got the right answer and apply score
+    if (choiceIndex == goodAnswerIndex)
+      totalScore += int.parse(scoreTimer.text);
+    else
+      scoreTimer.text = "0";
+    
+    await pause(const Duration(seconds: 1));
     
     // Restore background color
     for (int i = 1; i <= 4; i++)
@@ -148,6 +185,8 @@ class Quiz {
       choiceButton = querySelector("#ChoiceNo" + i.toString() +"_id");
       choiceButton.style.backgroundColor = "#35b128";
     }
+    
+    scoreSection.hidden = true; 
     
   }
   
@@ -163,15 +202,30 @@ class Quiz {
     gameSection.hidden = true;
     timerSection.hidden = false;
     
+    // Show the timer
     for (int countdown = 3; countdown > 0; countdown--)
     {
       countdownText.text = countdown.toString();
-      await pause(const Duration(seconds: 1));
+      await pause(const Duration(milliseconds: 750));
     }
     
     gameSection.hidden = false;
     timerSection.hidden = true;
 
+  }
+  
+  Future ShowScore() async
+  {
+
+    scoreSection.hidden = false;
+        
+    // Show the timer
+    for (int countdown = 1000; countdown >= 0 && choiceMade == false; countdown--)
+    {
+      scoreTimer.text = countdown.toString();
+      await pause(const Duration(milliseconds: 10));
+    }
+    
   }
   
 }

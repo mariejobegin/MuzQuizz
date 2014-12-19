@@ -42,6 +42,24 @@ h1, p {
   color: white;
 }
 
+#ScoreTimer_id {
+  position: absolute;
+  font-size: 72px;
+  top: 400px;
+  left: 350px;
+  font-weight: 900;
+  color: white;
+}
+
+#TotalScore_id {
+  position: absolute;
+  font-size: 72px;
+  top: 400px;
+  left: 350px;
+  font-weight: 900;
+  color: white;
+}
+
 .ChoiceButton{
   font-size: 72px;
   cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
