@@ -1,5 +1,6 @@
 part of songslist;
 
+// Enumeration of the song category
 class SongCategory {
   final _value;
   const SongCategory._internal(this._value);

@@ -11,21 +11,25 @@
     
     <link rel="stylesheet" href="muzquizz.css">
   </head>
-  <body>
+  <body id='Body_id'>
      
     <div id='Categories_id'>
       <p id='Category_id' style="color:white"><b>Choose a category</b></p>
-      <button id='Rock_id'>
+      <button id='Rock_id' class='CategoryButton'>
       <img src="packages/MuzQuizz/Images/Rock/Rock.Music.Button.jpg" height="125" width="350">
       </button>
     
-      <button id='Classic_id'>
+      <button id='Classic_id' class='CategoryButton'>
       <img src="packages/MuzQuizz/Images/Classic/Classical.Music.Button.jpg" height="125" width="350">
       </button>
+      <p id='Instructions_id'><b>Guess the song name as fast as possible based on a short musical extract!</b></p>
     </div>
     
     <div id=Timer_id>
       <p id="Countdown_id">
+    </div>
+    
+    <div id='CategoryTitle_id'>
     </div>
     
     <div id='Game_id' hidden = true>
@@ -34,28 +38,31 @@
       </audio>
     
       <button id='ChoiceNo1_id' class='ChoiceButton'>
-        <img height="125" width="300">
       </button>
     
       <button id='ChoiceNo2_id' class='ChoiceButton'>
-        <img height="125" width="300">
       </button>
       
       <button id='ChoiceNo3_id' class='ChoiceButton'>
-        <img height="125" width="300">
       </button>
       
       <button id='ChoiceNo4_id' class='ChoiceButton'>
-        <img height="125" width="300">
       </button>
     </div>
     
-    <div id=Score_id>
+    <div id=Score_id hidden = true>
       <p id="ScoreTimer_id">
+      <p id="CurrentScoreTitre_id">Current score:</p>
+      <p id="CurrentScore_id">0</p>
+      <p id="GoodAnswersTitle_id">Good answers:</p>
+      <p id="GoodAnswers_id">
     </div>
     
-    <div id=ScoreBoard_id>
-      <p id="TotalScore_id"></p>
+    <div id=ScoreBoard_id hidden = true>
+      <p id="TotalScoreText_id">Your final score is :</p>
+      <p id="TotalScore_id">5000</p>
+      <p id="AnswersResult_id">You have 3 good answers on 5</p>
+      
     </div>
     
   </body>

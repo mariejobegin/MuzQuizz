@@ -15,10 +15,33 @@ h1, p {
 }
 
 #Category_id {
+  text-shadow: 2px 2px black;
+  font-size: 36px;
+  
   position: absolute;
-  top: 0px;
-  left: 300px;
-  font-size: 24px;
+  top: 150px;
+  left: 250px;
+}
+
+#CategoryTitle_id {
+  text-shadow: 2px 2px black;
+  font-size: 72px;
+  font-weight: 500;
+  color: white;
+  
+  position: absolute;
+  top: 50px;
+  left: 225px;
+}
+
+#Instructions_id {
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px black;
+  
+  position: absolute;
+  top: 650px;
+  left: 40px;
 }
 
 #Rock_id {
@@ -34,38 +57,129 @@ h1, p {
 }
 
 #Countdown_id {
-  position: absolute;
-  font-size: 128px;
-  top: 275px;
-  left: 350px;
+  text-shadow: 2px 2px black;
   font-weight: 900;
   color: white;
+  font-size: 128px;
+  
+  position: absolute;
+  top: 275px;
+  left: 350px;
 }
 
 #ScoreTimer_id {
+  text-shadow: 2px 2px black;
+  text-align:right;
   position: absolute;
   font-size: 72px;
-  top: 400px;
-  left: 350px;
+  top: 540px;
+  left: 335px;
   font-weight: 900;
   color: white;
+}
+
+#GoodAnswers_id {
+  text-shadow: 2px 2px black;
+  font-size: 36px;
+  font-weight: 900;
+  color: white;
+  
+  position: absolute;
+  top: 715px;
+  left: 705px;
+}
+
+#GoodAnswersTitle_id {
+  text-shadow: 2px 2px black;
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
+  
+  position: absolute;
+  top: 685px;
+  left: 545px;
+}
+
+#CurrentScore_id {
+  text-shadow: 2px 2px black;
+  font-size: 36px;
+  text-align:right;
+  font-weight: 900;
+  color: white;
+  
+  position: absolute;
+  top: 715px;
+  left: 425px;
+}
+
+#CurrentScoreTitre_id {
+  text-shadow: 2px 2px black;
+  position: absolute;
+  font-size: 28px;
+  top: 685px;
+  left: 290px;
+  font-weight: 900;
+  color: white;
+}
+
+#TotalScoreText_id {
+  text-shadow: 3px 3px black;
+  font-size: 72px;
+  font-weight: 500;
+  color: white;
+  
+  position: absolute;
+  top: 250px;
+  left: 125px;
 }
 
 #TotalScore_id {
-  position: absolute;
-  font-size: 72px;
-  top: 400px;
-  left: 350px;
+  text-shadow: 3px 3px black;
+  font-size: 82px;
   font-weight: 900;
   color: white;
+  
+  position: absolute;
+  top: 400px;
+  left: 315px;
+}
+
+#AnswersResult_id {
+  text-shadow: 3px 3px black;
+  font-size: 48px;
+  font-weight: 500;
+  color: white;
+  
+  position: absolute;
+  top: 600px;
+  left: 75px;
+}
+
+.CategoryButton:{
+  /*give the button a drop shadow*/
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
+  box-shadow: 0 0 4px rgba(0,0,0, .75);
+  /*style the text*/
+  color:#f3f3f3;
+}
+
+.CategoryButton:hover,.CategoryButton:focus{
+  background-color :#6b6e6b; /*make the background a little darker*/
+  /*reduce the drop shadow size to give a pushed button effect*/
+  -webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
+  -moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
+  box-shadow: 0 0 1px rgba(0,0,0, .75);
 }
 
 .ChoiceButton{
-  font-size: 72px;
+  font-size: 20px;
+  font-weight: 400;
+  width: 400px;
+  height: 75px;
   cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
-  padding:5px 25px; /*add some padding to the inside of the button*/
-  background:#35b128; /*the colour of the button*/
-  border:1px solid #33842a; /*required or the default border for the browser will appear*/
+  background:#919491; /*the colour of the button*/
+  border:1px solid #6b6e6b; /*required or the default border for the browser will appear*/
   /*give the button curved corners, alter the size as required*/
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -76,11 +190,10 @@ h1, p {
   box-shadow: 0 0 4px rgba(0,0,0, .75);
   /*style the text*/
   color:#f3f3f3;
-  font-size:1.1em;
 }
 
 .ChoiceButton:hover,.ChoiceButton:focus{
-  background-color :#399630; /*make the background a little darker*/
+  background-color :#6b6e6b; /*make the background a little darker*/
   /*reduce the drop shadow size to give a pushed button effect*/
   -webkit-box-shadow: 0 0 1px rgba(0,0,0, .75);
   -moz-box-shadow: 0 0 1px rgba(0,0,0, .75);
@@ -89,24 +202,24 @@ h1, p {
 
 #ChoiceNo1_id {
   position: absolute;
-  top: 100px;
-  left: 245px;
+  top: 175px;
+  left: 200px;
 }
 
 #ChoiceNo2_id {
   position: absolute;
-  top: 250px;
-  left: 245px;
+  top: 275px;
+  left: 200px;
 }
 
 #ChoiceNo3_id {
   position: absolute;
-  top: 400px;
-  left: 245px;
+  top: 375px;
+  left: 200px;
 }
 
 #ChoiceNo4_id {
   position: absolute;
-  top: 550px;
-  left: 245px;
+  top: 475px;
+  left: 200px;
 }

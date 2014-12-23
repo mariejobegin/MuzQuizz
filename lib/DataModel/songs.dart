@@ -1,13 +1,21 @@
 part of songslist;
 
+// Information that represents a song
 class Song {
+  
   String artist;
   String songName;
   String songPath;
   SongCategory category;
-  List <String> wrongAnswers = new List <String>();
+  var wrongAnswers = new List <String>();
 
   String get fullName => '${artist} - ${songName}';
+  
+  Song(String _artist, String _songName)
+  {
+    artist = _artist;
+    songName = _songName;
+  }
 
   String toString() {
     return '  {\n'
@@ -19,9 +27,10 @@ class Song {
 
 }
 
+// Collection of the class Song
 class Songs {
-  List<Song> list = new List();
-  List<Song> wrongAnswers = new List<Song>();
+  var list = new List();
+  var wrongAnswers = new List<Song>();
 
   int get count => list.length;
 
@@ -36,13 +45,18 @@ class Songs {
   }
 
   Song find(String songName) {
+    
     for (Song e in list) {
       if (e.songName == songName) {
         return e;
       }
     }
+    
+    return null;
+    
   }
   
+  // Give a random song in the current list songs
   Song randomSong() {
     int randomInt = new math.Random().nextInt(list.length - 1);
     return list[randomInt];
