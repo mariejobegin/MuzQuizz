@@ -109,15 +109,18 @@ class Quiz {
       choiceButton = querySelector("#ChoiceNo" + i.toString() +"_id");
       choiceButton.onClick.listen((Event e) async {
  
-        await ShowResult(i, currentGameSongs.list.first);
+        // If a choice have been made, ignore further choice clicking until next song
+        if (choiceMade == false) {
+          await ShowResult(i, currentGameSongs.list.first);
         
-        // remove the current song from the list
-        currentGameSongs.list.removeAt(0);
-        
-        if (currentGameSongs.list.length == 0)
-          EndGame();
-        else
-          PlaySong(currentGameSongs.list.first);
+          // remove the current song from the list
+          currentGameSongs.list.removeAt(0);
+          
+          if (currentGameSongs.list.length == 0)
+            EndGame();
+          else
+            PlaySong(currentGameSongs.list.first);
+        }
       });
     }
     
